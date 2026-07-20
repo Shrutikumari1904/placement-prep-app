@@ -24,18 +24,27 @@ export default function Login() {
   return (
     <div className="auth-page">
       <form className="auth-card" onSubmit={handleSubmit}>
+        <div className="auth-brand">
+          <div className="auth-brand-icon">P</div>
+          <span className="auth-brand-name">PlacementPrep</span>
+        </div>
         <h2>Welcome Back</h2>
-        {error && <p className="error-text">{error}</p>}
+        <p className="auth-subtitle">Log in to continue your prep</p>
+        {error && <p className="error-text">⚠ {error}</p>}
 
-        <label>Email</label>
-        <input type="email" value={email} onChange={(e) => setEmail(e.target.value)} required />
+        <div className="form-group">
+          <label>Email</label>
+          <input type="email" value={email} onChange={(e) => setEmail(e.target.value)} required />
+        </div>
 
-        <label>Password</label>
-        <input type="password" value={password} onChange={(e) => setPassword(e.target.value)} required />
+        <div className="form-group">
+          <label>Password</label>
+          <input type="password" value={password} onChange={(e) => setPassword(e.target.value)} required />
+        </div>
 
-        <button type="submit">Log In</button>
+        <button type="submit" className="btn-primary">Log In</button>
 
-        <p className="switch-text">
+        <p className="auth-switch">
           Don't have an account? <Link to="/signup">Sign Up</Link>
         </p>
       </form>
