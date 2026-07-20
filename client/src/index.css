@@ -1,0 +1,280 @@
+/* Global reset + base styles */
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  font-family: 'Segoe UI', Arial, sans-serif;
+  background: #F5F6FA;
+  color: #1A1A2E;
+}
+button { cursor: pointer; font-family: inherit; }
+input { font-family: inherit; }
+
+/* ---------- Auth pages (Login / Signup) ---------- */
+.auth-page {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #16233A;
+}
+.auth-card {
+  background: #FFFFFF;
+  padding: 2.5rem;
+  border-radius: 12px;
+  width: 100%;
+  max-width: 380px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+}
+.auth-card h2 {
+  margin-bottom: 1.5rem;
+  color: #16233A;
+}
+.auth-card label {
+  display: block;
+  font-size: 0.85rem;
+  font-weight: 600;
+  margin: 0.9rem 0 0.3rem;
+  color: #4A5568;
+}
+.auth-card input {
+  width: 100%;
+  padding: 0.65rem 0.8rem;
+  border: 1px solid #D8DCE3;
+  border-radius: 6px;
+  font-size: 0.95rem;
+}
+.auth-card input:focus {
+  outline: none;
+  border-color: #C0362C;
+}
+.auth-card button {
+  width: 100%;
+  margin-top: 1.5rem;
+  padding: 0.7rem;
+  background: #C0362C;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  font-size: 1rem;
+  font-weight: 600;
+}
+.auth-card button:hover { background: #A32E24; }
+.switch-text {
+  margin-top: 1rem;
+  font-size: 0.85rem;
+  text-align: center;
+  color: #4A5568;
+}
+.switch-text a { color: #C0362C; font-weight: 600; text-decoration: none; }
+.error-text {
+  background: #FDEDEC;
+  color: #C0362C;
+  padding: 0.5rem 0.7rem;
+  border-radius: 6px;
+  font-size: 0.85rem;
+}
+
+/* ---------- Dashboard ---------- */
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: #16233A;
+  padding: 1rem 2rem;
+  color: white;
+}
+.navbar-right {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  font-size: 0.9rem;
+}
+.logout-btn {
+  background: #C0362C;
+  color: white;
+  border: none;
+  padding: 0.4rem 0.9rem;
+  border-radius: 6px;
+  font-size: 0.85rem;
+}
+
+.dashboard-content {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 2rem;
+}
+
+.search-bar {
+  width: 100%;
+  padding: 0.8rem 1rem;
+  border-radius: 8px;
+  border: 1px solid #D8DCE3;
+  font-size: 1rem;
+  margin-bottom: 1.2rem;
+}
+.search-bar:focus { outline: none; border-color: #C0362C; }
+
+.tier-tabs {
+  display: flex;
+  gap: 0.6rem;
+  margin-bottom: 1.5rem;
+  flex-wrap: wrap;
+}
+.tier-tab {
+  padding: 0.5rem 1rem;
+  border-radius: 20px;
+  border: 1px solid #D8DCE3;
+  background: white;
+  font-size: 0.85rem;
+  color: #4A5568;
+}
+.tier-tab.active {
+  background: #16233A;
+  color: white;
+  border-color: #16233A;
+}
+
+.status-text {
+  color: #8A8A8A;
+  padding: 2rem 0;
+  text-align: center;
+}
+
+.company-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: 1.2rem;
+}
+
+.company-card {
+  background: white;
+  border-radius: 10px;
+  padding: 1.3rem;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.06);
+}
+.company-card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 0.5rem;
+  margin-bottom: 0.6rem;
+}
+.company-card-header h3 { color: #16233A; }
+.tier-badge {
+  color: white;
+  font-size: 0.7rem;
+  font-weight: 700;
+  padding: 0.25rem 0.5rem;
+  border-radius: 5px;
+  white-space: nowrap;
+}
+.company-desc {
+  font-size: 0.85rem;
+  color: #4A5568;
+  margin-bottom: 0.8rem;
+  line-height: 1.4;
+}
+.tag-group {
+  margin-bottom: 0.5rem;
+  font-size: 0.8rem;
+}
+.tag-label {
+  font-weight: 700;
+  color: #16233A;
+  margin-right: 0.4rem;
+}
+.tag {
+  display: inline-block;
+  background: #EDEEF0;
+  color: #16233A;
+  padding: 0.15rem 0.5rem;
+  border-radius: 12px;
+  margin: 0.15rem 0.2rem 0 0;
+  font-size: 0.75rem;
+}
+.tag-alt { background: #FDEDEC; color: #C0362C; }
+
+/* ---------- Clickable company card ---------- */
+.company-card-clickable {
+  cursor: pointer;
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+.company-card-clickable:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 20px rgba(0,0,0,0.12);
+}
+
+/* ---------- Company Detail page ---------- */
+.detail-page {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 2rem;
+}
+.back-btn {
+  background: none;
+  border: none;
+  color: #16233A;
+  font-size: 0.9rem;
+  font-weight: 600;
+  margin-bottom: 1rem;
+  padding: 0.4rem 0;
+}
+.back-btn:hover { color: #C0362C; }
+
+.detail-card {
+  background: white;
+  border-radius: 12px;
+  padding: 2rem;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+}
+.detail-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.8rem;
+  margin-bottom: 1rem;
+}
+.detail-header h1 { color: #16233A; }
+.detail-desc {
+  color: #4A5568;
+  font-size: 1rem;
+  line-height: 1.6;
+  margin-bottom: 1.5rem;
+}
+.detail-section { margin-bottom: 1.3rem; }
+.detail-section h3 {
+  color: #16233A;
+  font-size: 0.95rem;
+  margin-bottom: 0.6rem;
+}
+
+/* ---------- Clickable DSA tags ---------- */
+.tag-clickable {
+  cursor: pointer;
+  transition: background 0.15s ease, color 0.15s ease;
+}
+.tag-clickable:hover {
+  background: #16233A;
+  color: white;
+}
+.hint-text {
+  font-size: 0.75rem;
+  font-weight: 400;
+  color: #8A8A8A;
+  margin-left: 0.3rem;
+}
+
+/* ---------- DSA question list ---------- */
+.question-list {
+  list-style: none;
+  padding: 0;
+}
+.question-list li {
+  background: #EDEEF0;
+  padding: 0.6rem 0.9rem;
+  border-radius: 8px;
+  margin-bottom: 0.5rem;
+  font-size: 0.9rem;
+  color: #1A1A2E;
+  border-left: 3px solid #C0362C;
+}
