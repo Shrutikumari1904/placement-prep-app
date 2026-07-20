@@ -41,14 +41,13 @@ export default function CompanyDetail() {
     fetchQuestions();
   }, [id]);
 
-  const tierColors = { high: '#1B7A43', medium: '#B8860B', low: '#8A8A8A' };
+const tierColors = { high: '#1B7A43', medium: '#B8860B', low: '#6B7280' };
 
-  const difficultyColors = {
-    EASY: '#2E7D32',
-    MEDIUM: '#B8860B',
-    HARD: '#C0392B',
-  };
-
+ const difficultyColors = {
+  EASY: '#15803D',
+  MEDIUM: '#C2790B',
+  HARD: '#C0392B',
+};
   if (loading) return <p className="status-text">Loading...</p>;
   if (error) return <p className="status-text">{error}</p>;
 
