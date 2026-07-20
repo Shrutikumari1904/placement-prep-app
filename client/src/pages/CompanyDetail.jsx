@@ -6,10 +6,12 @@ import { useParams, useNavigate } from 'react-router-dom';
 import api from '../api/axios';
 
 export default function CompanyDetail() {
-  const { id } = useParams();       // reads the :id from the URL, e.g. /company/64f...
+  const { id } = useParams();
   const navigate = useNavigate();
   const [company, setCompany] = useState(null);
+  const [questions, setQuestions] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [questionsLoading, setQuestionsLoading] = useState(true);
   const [error, setError] = useState('');
 
   useEffect(() => {
@@ -23,10 +25,29 @@ export default function CompanyDetail() {
         setLoading(false);
       }
     }
+
+    async function fetchQuestions() {
+      try {
+        const res = await api.get(`/companies/${id}/questions`);
+        setQuestions(res.data);
+      } catch (err) {
+        setQuestions([]);
+      } finally {
+        setQuestionsLoading(false);
+      }
+    }
+
     fetchCompany();
+    fetchQuestions();
   }, [id]);
 
   const tierColors = { high: '#1B7A43', medium: '#B8860B', low: '#8A8A8A' };
+
+  const difficultyColors = {
+    EASY: '#2E7D32',
+    MEDIUM: '#B8860B',
+    HARD: '#C0392B',
+  };
 
   if (loading) return <p className="status-text">Loading...</p>;
   if (error) return <p className="status-text">{error}</p>;
@@ -47,6 +68,38 @@ export default function CompanyDetail() {
         </div>
 
         <p className="detail-desc">{company.description}</p>
+
+        <div className="detail-section">
+          <h3>Real Interview Questions Asked at {company.name}</h3>
+          {questionsLoading && <p className="status-text">Loading questions...</p>}
+          {!questionsLoading && questions.length === 0 && (
+            <p className="status-text">No specific questions found for this company yet.</p>
+          )}
+          {!questionsLoading && questions.length > 0 && (
+            <div className="questions-list">
+              {questions.map((q) => (
+                <a
+                  key={q._id}
+                  href={q.link}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="question-row"
+                >
+                  <span
+                    className="difficulty-badge"
+                    style={{ backgroundColor: difficultyColors[q.difficulty] || '#8A8A8A' }}
+                  >
+                    {q.difficulty || 'N/A'}
+                  </span>
+                  <span className="question-title">{q.title}</span>
+                  {q.topics.length > 0 && (
+                    <span className="question-topics">{q.topics.join(', ')}</span>
+                  )}
+                </a>
+              ))}
+            </div>
+          )}
+        </div>
 
         <div className="detail-section">
           <h3>DSA Topics to Prepare <span className="hint-text">(click a topic for common question types)</span></h3>
