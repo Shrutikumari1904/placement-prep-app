@@ -57,4 +57,19 @@ router.post('/', protect, async (req, res) => {
   }
 });
 
+const Question = require('../models/Question');
+
+// ---------------- GET /api/companies/:id/questions ----------------
+// Returns real interview questions for one company, sorted by frequency (most-asked first)
+router.get('/:id/questions', async (req, res) => {
+  try {
+    const questions = await Question.find({ company: req.params.id })
+      .sort({ frequency: -1 })
+      .limit(50);
+    res.json(questions);
+  } catch (err) {
+    res.status(500).json({ message: 'Server error', error: err.message });
+  }
+});
+
 module.exports = router;
